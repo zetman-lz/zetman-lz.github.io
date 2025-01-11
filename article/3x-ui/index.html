@@ -1,0 +1,597 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>详解3X-UI可视化Xray面板的搭建步骤(最新版本) | 🏰 魔法信息堡</title><meta name="keywords" content="VPS,VPN"><meta name="author" content="ZETMAN"><meta name="copyright" content="ZETMAN"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="详解3X-UI可视化Xray面板的搭建步骤(最新版本)"><meta name="application-name" content="详解3X-UI可视化Xray面板的搭建步骤(最新版本)"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="详解3X-UI可视化Xray面板的搭建步骤(最新版本)"><meta property="og:url" content="http://example.com/article/3x-ui/index.html"><meta property="og:site_name" content="🏰 魔法信息堡"><meta property="og:description" content="最新3X-UI可视化Xray面板详细搭建教程一、前期准备 RackNerd：是一家提供云计算和虚拟私人服务器（VPS）解决方案的公司，致力于为个人和企业提供高性能的托管服务。该公司提供多种服务，包括VPS托管、专用服务器、云服务和区域性托管等，旨在满足不同客户的需求。（购买VPS）  Hosting"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/640%20(83).gif"><meta property="article:author" content="ZETMAN"><meta property="article:tag"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/640%20(83).gif"><meta name="description" content="最新3X-UI可视化Xray面板详细搭建教程一、前期准备 RackNerd：是一家提供云计算和虚拟私人服务器（VPS）解决方案的公司，致力于为个人和企业提供高性能的托管服务。该公司提供多种服务，包括VPS托管、专用服务器、云服务和区域性托管等，旨在满足不同客户的需求。（购买VPS）  Hosting"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/web-logo.ico"><link rel="canonical" href="http://example.com/article/3x-ui/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.zetman.cn/',
+  commentBarrageConfig:undefined,
+  music_page_default: "nav_music",
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: false,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️  + 🖥️  = 与科技同行","🔍  + 💡  = 分享智慧火","🏠  + 📱  = 家中控制者","🔨  + 🎨  = 设计开发合","🤝  + 🧠  = 交互设计师","🏃  + 🏃‍♂️ = 行动梦想家","🧱  + 🏗️  = 团队推动力","💢  + 🔥  = 行动胜言语"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: ZETMAN","link":"链接: ","source":"来源: 🏰 魔法信息堡","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '🏰 魔法信息堡',
+  title: '详解3X-UI可视化Xray面板的搭建步骤(最新版本)',
+  postAI: '',
+  pageFillDescription: '最新3X-UI可视化Xray面板详细搭建教程, 一、前期准备, 二、详细购买VPS推荐, 三、购买并注册域名, 四、安装3X-UI面板, 五、下载v2rayN验证节点, 六、参考资料最新可视化面板详细搭建教程一前期准备是一家提供云计算和虚拟私人服务器解决方案的公司致力于为个人和企业提供高性能的托管服务该公司提供多种服务包括托管专用服务器云服务和区域性托管等旨在满足不同客户的需求购买是一家全球知名的网络托管服务提供商专注于提供高性价比的虚拟主机云主机虚拟私人服务器以及域名注册等服务成立于年致力于为个人和小型企业提供简单快速和可靠的网站托管解决方案购买域名是一家全球领先的域名注册网站托管和在线服务提供商成立于年总部位于美国亚利桑那州为个人和企业提供一系列的互联网服务旨在帮助他们建立和维护在线存在购买域名是一家提供网络安全和性能优化服务的公司致力于帮助网站和应用程序提高安全性速度和可靠性其核心服务包括内容分发网络防火墙安全防护如攻击防护负载均衡和域名解析服务等代理域名注此项目是需要一点的资金做为基础支撑的如需要免费薅羊毛那还是另寻他处吧二详细购买推荐注册账户除了邮箱需要留意其他建议使用推荐推荐使用美国身份证生成器新年购买优惠链接选择合适的配置进行购买以下结尾参考需要购买其他的参考参考资料注这里使用的都是美刀进行购买需要自己根据当前汇率进行换算详细选择配置购买由于我这里多选择了一个所以贵了美刀操作系统不建议选择系统默认启用防火墙建议使用系统或者其他你自己较为熟悉的系统我这里仅作为演示服务端地点建议修改延迟较低的测试延迟我这里选择的是圣何塞的地点延迟较低比较推荐购买成功后点击个人主页就会显示购买的注意邮箱验证点击可以找到相关登录信息服务器相关登录信息点击管理服务器点击控制面板可以看到详细信息三购买并注册域名选择价格实惠且有名气的网站购买详情查看参考链接购买域名后需要将域名托管到托管成功后添加记录指向服务器地址注意删除原有的记录和关闭代理重点如果已用代理的话解析会解析不到地址上而是自动分配的地址会导致节点无法使用四安装面板高级面板基于构建安装和升级命令直接执行会出现一些报错问题如依赖包冲突解决报错方法执行以下命令然后再重新执行安装升级命令检查当前的安装状态尝试卸载冲突的包安装特定版本的检查可用的更新安装成功后可正常使用命令使用命令安装证书先按然后再按再然后添加域名端口指定默认最后按安装证书到面板上再输入命令先按再按启用证书安装成功后可正常打开面板注如前面域名代理问题没解决证书很有可能会安装不上添加入站端口随机分配传输选择主机添加域名安全选择添加域名数字证书从面板设置证书开启默认配置防火墙端口不开放可能会导致节点无效开放端口根据自己需求开放相关端口刷新规则查看开放端口关闭防火墙懒得配置可以直接关闭关闭开机自启开放服务相关配置为端口号或者是服务名称五下载验证节点适用于和的客户端支持核心和等复制节点地址导入到中按进行测试和速度如出现有延迟表示节点正常观看视频测试晚高峰还是的多测试测试其他协议如等六参考资料年全网低价大盘点谁是性价比之王最新可视化面板一键快速搭建多用户多协议自签证书详细细节小白一站式教程最便宜的搭建教程美金年评测节点速度对比搬瓦工有没有性价比如何把自己的域名托管到享受大厂的域名解析教程手把手教你如何在托管绑定域名新手如何购买域名详细教程便宜域名购买域名购买推荐域名购买后如何使用域名注册域名怎么用最新面板小白轻松上手简单安全科技导航站打造专业的云服务导航网站国外域名注册和使用教程分享个全球最大最靠谱域名服务商科学上网通信逻辑协议介绍',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-12 01:01:11',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/load.gif"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.zetman.cn/" title="博客"><img class="back-menu-item-icon" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/web-logo.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.alipan.com/s/NJVFXRPD1Wf" title="阿里云盘分享"><img class="back-menu-item-icon" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/ali.ico" alt="阿里云盘分享"/><span class="back-menu-item-text">阿里云盘分享</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/zetman-lz/PicGo" title="魔法信息堡图床"><img class="back-menu-item-icon" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/jsdelivr.ico" alt="魔法信息堡图床"/><span class="back-menu-item-text">魔法信息堡图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://lobechat.zetman.top/" title="LobeChat聊天"><img class="back-menu-item-icon" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/lobechat.ico" alt="LobeChat聊天"/><span class="back-menu-item-text">LobeChat聊天</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">🏰 魔法信息堡</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 警告页</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/Warning/"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 警告</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/weixing.png" target="_blank"><img class="post-qr-code-img" alt="微信" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/weixing.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/zhifubao.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/zhifubao.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI-%E7%94%9F%E5%9B%BE/" style="font-size: 1.05rem;">AI 生图<sup>3</sup></a><a href="/tags/Anzhiyu/" style="font-size: 1.05rem;">Anzhiyu<sup>1</sup></a><a href="/tags/Cloudflare/" style="font-size: 1.05rem;">Cloudflare<sup>1</sup></a><a href="/tags/ComfyUI/" style="font-size: 1.05rem;">ComfyUI<sup>2</sup></a><a href="/tags/GitHub/" style="font-size: 1.05rem;">GitHub<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 1.05rem;">Hexo<sup>4</sup></a><a href="/tags/Krita/" style="font-size: 1.05rem;">Krita<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 1.05rem;">Markdown<sup>1</sup></a><a href="/tags/MongoDB/" style="font-size: 1.05rem;">MongoDB<sup>1</sup></a><a href="/tags/PicGo/" style="font-size: 1.05rem;">PicGo<sup>1</sup></a><a href="/tags/Twikoo/" style="font-size: 1.05rem;">Twikoo<sup>1</sup></a><a href="/tags/VPN/" style="font-size: 1.05rem;">VPN<sup>1</sup></a><a href="/tags/VPS/" style="font-size: 1.05rem;">VPS<sup>1</sup></a><a href="/tags/Vercel/" style="font-size: 1.05rem;">Vercel<sup>1</sup></a><a href="/tags/jsDelivr/" style="font-size: 1.05rem;">jsDelivr<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/11/"><span class="card-archive-list-date">十一月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">4</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91/" itemprop="url">魔法上网</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/VPS/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>VPS</span></a><a class="article-meta__tags" href="/tags/VPN/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>VPN</span></a></span></div></div><h1 class="post-title" itemprop="name headline">详解3X-UI可视化Xray面板的搭建步骤(最新版本)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-01-11T16:00:00.000Z" title="发表于 2025-01-12 00:00:00">2025-01-12</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-01-11T17:01:11.570Z" title="更新于 2025-01-12 01:01:11">2025-01-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为长沙"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>长沙</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/640%20(83).gif"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://example.com/article/3x-ui/"><header><a class="post-meta-categories" href="/categories/%E9%AD%94%E6%B3%95%E4%B8%8A%E7%BD%91/" itemprop="url">魔法上网</a><a href="/tags/VPS/" tabindex="-1" itemprop="url">VPS</a><a href="/tags/VPN/" tabindex="-1" itemprop="url">VPN</a><h1 id="CrawlerTitle" itemprop="name headline">详解3X-UI可视化Xray面板的搭建步骤(最新版本)</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">ZETMAN</span><time itemprop="dateCreated datePublished" datetime="2025-01-11T16:00:00.000Z" title="发表于 2025-01-12 00:00:00">2025-01-12</time><time itemprop="dateCreated datePublished" datetime="2025-01-11T17:01:11.570Z" title="更新于 2025-01-12 01:01:11">2025-01-12</time></header><h1 id="最新3X-UI可视化Xray面板详细搭建教程"><a href="#最新3X-UI可视化Xray面板详细搭建教程" class="headerlink" title="最新3X-UI可视化Xray面板详细搭建教程"></a>最新3X-UI可视化Xray面板详细搭建教程</h1><h2 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a>一、前期准备</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.racknerd.com/">RackNerd</a>：是一家提供云计算和虚拟私人服务器（VPS）解决方案的公司，致力于为个人和企业提供高性能的托管服务。该公司提供多种服务，包括VPS托管、专用服务器、云服务和区域性托管等，旨在满足不同客户的需求。（购买VPS）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.hostinger.com/">Hostinger</a>：是一家全球知名的网络托管服务提供商，专注于提供高性价比的虚拟主机、云主机、VPS（虚拟私人服务器）以及域名注册等服务。成立于2004年，Hostinger致力于为个人和小型企业提供简单、快速和可靠的网站托管解决方案。（购买域名）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.godaddy.com/zh-sg">GoDaddy</a>：是一家全球领先的域名注册、网站托管和在线服务提供商，成立于1997年，总部位于美国亚利桑那州。GoDaddy为个人和企业提供一系列的互联网服务，旨在帮助他们建立和维护在线存在。（购买域名）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://dash.cloudflare.com/">Cloudflare</a>：是一家提供网络安全和性能优化服务的公司，致力于帮助网站和应用程序提高安全性、速度和可靠性。其核心服务包括内容分发网络（CDN）、防火墙、安全防护（如DDoS攻击防护）、负载均衡和域名解析服务等。（代理域名）</p>
+</li>
+</ol>
+<p><strong>注：此项目是需要一点的资金做为基础支撑的，如需要免费薅羊毛，那还是另寻他处吧。</strong></p>
+<h2 id="二、详细购买VPS推荐"><a href="#二、详细购买VPS推荐" class="headerlink" title="二、详细购买VPS推荐"></a>二、详细购买VPS推荐</h2><ol>
+<li><p>注册账户，除了邮箱需要留意，其他建议使用推荐（推荐使用：<a target="_blank" rel="noopener" href="https://www.shenfendaquan.com/">美国身份证生成器</a>）</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.racknerd.com/NewYear/">2025新年购买优惠链接</a> ：选择合适的配置进行购买，以下结尾参考（需要购买其他VPS的参考参考资料）</p>
+</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111212240882.png"></p>
+<p><strong>注：这里使用的都是美刀进行购买，需要自己根据当前汇率进行换算</strong></p>
+<ol start="3">
+<li>详细选择配置购买，由于我这里多选择了一个CPU所以贵了6美刀，操作系统不建议选择 CentOS 系统（CentOS Steam 9 默认启用 firewalld 防火墙），建议使用 Ubuntu 系统或者其他你自己较为熟悉的系统，我这里仅作为演示，服务端地点建议修改延迟较低的</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111212714897.png"></p>
+<ol start="4">
+<li><a target="_blank" rel="noopener" href="https://www.itdog.cn/ping/">测试延迟</a>：我这里选择的是圣何塞的地点，延迟较低比较推荐</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111213522655.png"></p>
+<ol start="5">
+<li>购买成功后点击个人主页就会显示购买的VPS（注意邮箱验证），点击 View EmailLog 可以找到相关登录信息</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111214356920.png"></p>
+<ol start="6">
+<li>服务器相关登录信息 KVM VPS Login Information</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111214254845.png"></p>
+<ol start="7">
+<li>点击管理服务器，点击 Control Panel 控制面板可以看到详细信息</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111214812579.png"></p>
+<h2 id="三、购买并注册域名"><a href="#三、购买并注册域名" class="headerlink" title="三、购买并注册域名"></a>三、购买并注册域名</h2><ol>
+<li>选择价格实惠且有名气的网站购买，详情查看参考链接</li>
+<li>购买域名后需要将域名托管到 Cloudflare，托管成功后添加 A 记录指向服务器 IPv4地址，<strong>注意删除原有的 A 记录和关闭代理（重点）</strong>，如果已用代理的话，解析会解析不到VPS地址上，而是 Cloudflare 自动分配的 IPv6地址，会导致节点无法使用</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111220846958.png"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111220220092.png"></p>
+<h2 id="四、安装3X-UI面板"><a href="#四、安装3X-UI面板" class="headerlink" title="四、安装3X-UI面板"></a>四、安装3X-UI面板</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/MHSanaei/3x-ui">3X-UI 高级 Web 面板 • 基于 Xray Core 构建</a></p>
+</li>
+<li><p>安装和升级命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash &lt;(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>CentOS Stream 9 直接执行会出现一些报错问题：如依赖包冲突</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Error: </span><br><span class="line"> Problem: package network-scripts-10.11.4-1.el9.x86_64 requires initscripts(x86-64) = 10.11.4-1.el9, but none of the providers can be installed</span><br><span class="line">  - cannot install both initscripts-10.11.8-4.el9.x86_64 and initscripts-10.11.4-1.el9.x86_64</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>解决报错方法：执行以下命令，然后再重新执行安装升级命令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查当前的安装状态</span></span><br><span class="line">yum list installed | grep initscripts</span><br><span class="line">yum list installed | grep network-scripts</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 尝试卸载冲突的包</span></span><br><span class="line"><span class="built_in">sudo</span> yum remove initscripts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装特定版本的 initscripts</span></span><br><span class="line"><span class="built_in">sudo</span> yum install initscripts-10.11.4-1.el9</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查可用的更新</span></span><br><span class="line"><span class="built_in">sudo</span> yum update</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>安装成功后可正常使用 <code>x-ui</code> 命令，使用 <code>x-ui</code> 命令安装 SSL证书，先按 <code>18</code> 然后再按 <code>1</code> 再然后添加 <strong>域名</strong> 端口指定默认 <strong>80</strong> 最后按 <code>y</code> 安装证书到 3X-UI 面板上，再输入 <code>x-ui</code> 命令 先按 <code>23</code> 再按 <code>1</code> 启用 <code>BBR</code>，证书安装成功后可正常打开web面板（注：如前面<strong>域名代理问题</strong>没解决证书很有可能会安装不上）</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111222618308.png"></p>
+<ol start="6">
+<li>添加入站，端口随机分配，传输选择 <code>WebSocket</code> ，主机添加域名，安全选择 TLS，SNI 添加域名，数字证书从面板设置证书，Sniffing 开启默认。</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111222816603-17366061733831.png"></p>
+<ol start="7">
+<li>配置 firewalld 防火墙，端口不开放可能会导致节点无效</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开放端口(根据自己需求开放相关端口)</span></span><br><span class="line">firewall-cmd --zone=public --add-port=xxx/tcp --permanent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 刷新规则</span></span><br><span class="line">firewall-cmd --reload</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看开放端口</span></span><br><span class="line">firewall-cmd --list-port</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭防火墙(懒得配置可以直接关闭)</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 关闭开机自启</span></span><br><span class="line">systemctl <span class="built_in">disable</span> firewalld</span><br><span class="line"></span><br><span class="line"><span class="comment"># 开放服务(相关配置)</span></span><br><span class="line">firewall-cmd --zone=public --add-service=xxx --permanent</span><br><span class="line"></span><br><span class="line"><span class="comment"># xxx为端口号或者是服务名称</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="五、下载v2rayN验证节点"><a href="#五、下载v2rayN验证节点" class="headerlink" title="五、下载v2rayN验证节点"></a>五、下载v2rayN验证节点</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/2dust/v2rayN">v2rayN</a>：适用于Windows、Linux和macOS的GUI客户端，支持Xray核心和sing-box-core等</p>
+</li>
+<li><p>复制节点地址导入到 v2rayN 中</p>
+</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111232153498.png"></p>
+<ol start="3">
+<li>按 Ctrl+E 进行测试和速度，如出现有延迟表示节点正常</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250111224814722.png"></p>
+<ol start="3">
+<li>Youtube观看4K视频测试，晚高峰还是🆗的</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/image-20250112003618861.png"></p>
+<ol start="4">
+<li>多测试测试其他协议，如 Vmess+ws 等</li>
+</ol>
+<h2 id="六、参考资料"><a href="#六、参考资料" class="headerlink" title="六、参考资料"></a>六、参考资料</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=2L5vyjziyho">2024年全网低价VPS大盘点！谁是性价比之王？</a> </p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=DzePNXeBzp0">最新3X-UI可视化Xray面板 | VPS一键快速搭建V2ray | 多用户 多协议 自签SSL证书 | 详细细节小白一站式教程</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=goVuaV9qw_Y">RN RackNerd | 最便宜的VPS搭建XX教程 | 10美金&#x2F;年 | 评测节点速度对比搬瓦工有没有性价比？</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7gvk9NbGAo0">如何把自己的域名托管到cloudflare，享受大厂的域名解析教程，手把手教你如何在cloudflare托管绑定域名</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=alGjkpOkeO0">新手如何购买域名详细教程，便宜域名购买，域名购买推荐，域名购买后如何使用，域名注册，域名怎么用</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=qsYG9SsUgKE">2025最新3X-UI面板，小白轻松上手，简单安全！</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://dh.kejilion.pro/">科技lion导航站|打造专业的云服务导航网站</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=uZmyXUqb9qU">国外域名注册和使用教程 ，分享个全球最大最靠谱域名服务商</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=QSwZUTRJuhU">科学上网通信逻辑，VMess ，VLESS ，Trojan ，Shadowsocks，Dokodemo-door，SOCKS，HTTP，WireGuard协议介绍</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=MXTbTpzs7tU">4K HDR 60FPS BEST OF 2025 Dolby Vision🍀4K Video ULTRA HD</a></p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/Cthulhu1.gif" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/Cthulhu1.gif" title="头像" alt="头像"></a><div class="post-copyright__author_name">ZETMAN</div><div class="post-copyright__author_desc">追寻梦想的魔法旅程</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://example.com/article/3x-ui/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://example.com/article/3x-ui/')">详解3X-UI可视化Xray面板的搭建步骤(最新版本)</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/weixing.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/weixing.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/zhifubao.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/zhifubao.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://example.com/article/3x-ui/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=详解3X-UI可视化Xray面板的搭建步骤(最新版本)&amp;url=http://example.com/article/3x-ui/&amp;pic=https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/640%20(83).gif" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">🏰 魔法信息堡</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/VPS/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>VPS<span class="tagsPageCount">1</span></a><a class="post-meta__box__tags" href="/tags/VPN/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>VPN<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/640%20(83).gif" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/article/comfyui-2/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/695.gif" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">ComfyUI：轻松生成二次元美图</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/Cthulhu1.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/dog2-2.png" alt="status"/></div></div><div class="author-info__description">欢迎来到魔法信息堡, 希望你在这里找到所需的知识和教程, 开启一段充满魔法的奇妙之旅!</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">ZETMAN</h1><div class="author-info__desc">追寻梦想的魔法旅程</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/zetman-lz" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/473987590" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%80%E6%96%B03X-UI%E5%8F%AF%E8%A7%86%E5%8C%96Xray%E9%9D%A2%E6%9D%BF%E8%AF%A6%E7%BB%86%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B"><span class="toc-text">最新3X-UI可视化Xray面板详细搭建教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="toc-text">一、前期准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%AF%A6%E7%BB%86%E8%B4%AD%E4%B9%B0VPS%E6%8E%A8%E8%8D%90"><span class="toc-text">二、详细购买VPS推荐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%B4%AD%E4%B9%B0%E5%B9%B6%E6%B3%A8%E5%86%8C%E5%9F%9F%E5%90%8D"><span class="toc-text">三、购买并注册域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E8%A3%853X-UI%E9%9D%A2%E6%9D%BF"><span class="toc-text">四、安装3X-UI面板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%B8%8B%E8%BD%BDv2rayN%E9%AA%8C%E8%AF%81%E8%8A%82%E7%82%B9"><span class="toc-text">五、下载v2rayN验证节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-text">六、参考资料</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/article/3x-ui/" title="详解3X-UI可视化Xray面板的搭建步骤(最新版本)"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/640%20(83).gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="详解3X-UI可视化Xray面板的搭建步骤(最新版本)"/></a><div class="content"><a class="title" href="/article/3x-ui/" title="详解3X-UI可视化Xray面板的搭建步骤(最新版本)">详解3X-UI可视化Xray面板的搭建步骤(最新版本)</a><time datetime="2025-01-11T16:00:00.000Z" title="发表于 2025-01-12 00:00:00">2025-01-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/article/comfyui-2/" title="ComfyUI：轻松生成二次元美图"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/695.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ComfyUI：轻松生成二次元美图"/></a><div class="content"><a class="title" href="/article/comfyui-2/" title="ComfyUI：轻松生成二次元美图">ComfyUI：轻松生成二次元美图</a><time datetime="2024-12-25T16:00:00.000Z" title="发表于 2024-12-26 00:00:00">2024-12-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/article/krita-1/" title="Krita AI 绘图：开启你的二次元创作之旅"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/668.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Krita AI 绘图：开启你的二次元创作之旅"/></a><div class="content"><a class="title" href="/article/krita-1/" title="Krita AI 绘图：开启你的二次元创作之旅">Krita AI 绘图：开启你的二次元创作之旅</a><time datetime="2024-12-20T16:00:00.000Z" title="发表于 2024-12-21 00:00:00">2024-12-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/article/comfyui-1/" title="通过 ComfyUI 优化生成更符合中国人长相特征和审美标准的图像"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/648.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="通过 ComfyUI 优化生成更符合中国人长相特征和审美标准的图像"/></a><div class="content"><a class="title" href="/article/comfyui-1/" title="通过 ComfyUI 优化生成更符合中国人长相特征和审美标准的图像">通过 ComfyUI 优化生成更符合中国人长相特征和审美标准的图像</a><time datetime="2024-12-15T16:00:00.000Z" title="发表于 2024-12-16 00:00:00">2024-12-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/article/web-bug-2/" title="现场黑客实战指南：探索如何在漏洞赏金猎人视角下进行深入思考与分析（第二部分）"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/673.gif" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="现场黑客实战指南：探索如何在漏洞赏金猎人视角下进行深入思考与分析（第二部分）"/></a><div class="content"><a class="title" href="/article/web-bug-2/" title="现场黑客实战指南：探索如何在漏洞赏金猎人视角下进行深入思考与分析（第二部分）">现场黑客实战指南：探索如何在漏洞赏金猎人视角下进行深入思考与分析（第二部分）</a><time datetime="2024-12-10T16:00:00.000Z" title="发表于 2024-12-11 00:00:00">2024-12-11</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 - 2025 By <a class="footer-bar-link" href="/" title="ZETMAN" target="_blank">ZETMAN</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/" title="GitHub">GitHub</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://dash.cloudflare.com/" title="Cloudflare">Cloudflare</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/" title="PicGo">PicGo</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://www.jsdelivr.com/" title="jsDelivr">jsDelivr</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://twikoo.js.org/" title="Twikoo">Twikoo</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://www.mongodb.com/zh-cn" title="MongoDB">MongoDB</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://vercel.com/" title="Vercel">Vercel</a><a class="footer-bar-link" target="_blank" rel="noopener" href="https://www.oplog.cn/qexo/" title="Qexo">Qexo</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">15</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">4</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://blog.zetman.cn/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/web-logo.ico" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.alipan.com/s/NJVFXRPD1Wf" title="阿里云盘分享"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/ali.ico" alt="阿里云盘分享"/><span class="back-menu-item-text">阿里云盘分享</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://github.com/zetman-lz/PicGo" title="魔法信息堡图床"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/jsdelivr.ico" alt="魔法信息堡图床"/><span class="back-menu-item-text">魔法信息堡图床</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://lobechat.zetman.top/" title="LobeChat聊天"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/zetman-lz/PicGo@main/lobechat.ico" alt="LobeChat聊天"/><span class="back-menu-item-text">LobeChat聊天</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 警告页</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/Warning/"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 警告</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AI-%E7%94%9F%E5%9B%BE/" style="font-size: 0.88rem;">AI 生图<sup>3</sup></a><a href="/tags/Anzhiyu/" style="font-size: 0.88rem;">Anzhiyu<sup>1</sup></a><a href="/tags/Cloudflare/" style="font-size: 0.88rem;">Cloudflare<sup>1</sup></a><a href="/tags/ComfyUI/" style="font-size: 0.88rem;">ComfyUI<sup>2</sup></a><a href="/tags/GitHub/" style="font-size: 0.88rem;">GitHub<sup>2</sup></a><a href="/tags/Hexo/" style="font-size: 0.88rem;">Hexo<sup>4</sup></a><a href="/tags/Krita/" style="font-size: 0.88rem;">Krita<sup>1</sup></a><a href="/tags/Markdown/" style="font-size: 0.88rem;">Markdown<sup>1</sup></a><a href="/tags/MongoDB/" style="font-size: 0.88rem;">MongoDB<sup>1</sup></a><a href="/tags/PicGo/" style="font-size: 0.88rem;">PicGo<sup>1</sup></a><a href="/tags/Twikoo/" style="font-size: 0.88rem;">Twikoo<sup>1</sup></a><a href="/tags/VPN/" style="font-size: 0.88rem;">VPN<sup>1</sup></a><a href="/tags/VPS/" style="font-size: 0.88rem;">VPS<sup>1</sup></a><a href="/tags/Vercel/" style="font-size: 0.88rem;">Vercel<sup>1</sup></a><a href="/tags/jsDelivr/" style="font-size: 0.88rem;">jsDelivr<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.14",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 ZETMAN 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.zetman.cn/',
+      region: '',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.zetman.cn/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.zetman.cn/',
+        region: '',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.39/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
